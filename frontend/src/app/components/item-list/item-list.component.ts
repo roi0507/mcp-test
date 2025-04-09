@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ItemService } from '../../services/item.service';
 import { Item } from '../../models/item.model';
+import { ItemDetailModalComponent } from '../item-detail-modal/item-detail-modal.component';
 
 @Component({
   selector: 'app-item-list',
@@ -8,6 +9,8 @@ import { Item } from '../../models/item.model';
   styleUrls: ['./item-list.component.scss']
 })
 export class ItemListComponent implements OnInit {
+  @ViewChild(ItemDetailModalComponent) detailModal!: ItemDetailModalComponent;
+  
   items: Item[] = [];
   loading = false;
   error = '';
@@ -33,5 +36,9 @@ export class ItemListComponent implements OnInit {
         this.loading = false;
       }
     });
+  }
+  
+  openItemDetails(item: Item): void {
+    this.detailModal.open(item.id);
   }
 } 

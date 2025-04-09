@@ -9,6 +9,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ItemListComponent } from './components/item-list/item-list.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ItemDetailModalComponent } from './components/item-detail-modal/item-detail-modal.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -22,7 +23,8 @@ const routes: Routes = [
     HomeComponent,
     ItemListComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ItemDetailModalComponent
   ],
   imports: [
     BrowserModule,

@@ -9,4 +9,19 @@
 .spinner-border {
   width: 3rem;
   height: 3rem;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover {
+  border-color: #3f51b5;
+  box-shadow: 0 4px 10px rgba(63, 81, 181, 0.3);
+}
+
+.card-action {
+  margin-top: 10px;
+  text-align: right;
+  color: #3f51b5;
 } 

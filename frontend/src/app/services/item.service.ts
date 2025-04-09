@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { Item } from '../models/item.model';
+import { Item, ItemDetail } from '../models/item.model';
 
 interface ItemsResponse {
   items: Item[];
@@ -18,5 +18,9 @@ export class ItemService {
 
   getItems(): Observable<ItemsResponse> {
     return this.http.get<ItemsResponse>(`${this.apiUrl}/data`);
+  }
+
+  getItemDetails(id: number): Observable<ItemDetail> {
+    return this.http.get<ItemDetail>(`${this.apiUrl}/items/${id}`);
   }
 } 

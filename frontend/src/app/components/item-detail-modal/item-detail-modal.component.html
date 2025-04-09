@@ -1,0 +1,50 @@
+<div class="modal-backdrop" *ngIf="isVisible" (click)="close()"></div>
+
+<div class="modal-container" *ngIf="isVisible">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h5 class="modal-title">Item Details</h5>
+      <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+    </div>
+    
+    <div class="modal-body">
+      <div *ngIf="loading" class="text-center p-3">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="mt-2">Loading item details...</p>
+      </div>
+      
+      <div *ngIf="error" class="alert alert-danger">
+        {{ error }}
+      </div>
+      
+      <div *ngIf="itemDetail && !loading && !error">
+        <div class="card mb-3">
+          <div class="card-body">
+            <h4 class="card-title">{{ itemDetail.name }}</h4>
+            
+            <div class="row mt-4">
+              <div class="col-md-6">
+                <p><strong>Item ID:</strong> {{ itemDetail.id }}</p>
+              </div>
+              <div class="col-md-6">
+                <p><strong>Warehouse:</strong> {{ itemDetail.warehouse }}</p>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-12">
+                <p><strong>Amount in Stock:</strong> {{ itemDetail.amount }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="close()">Close</button>
+    </div>
+  </div>
+</div> 

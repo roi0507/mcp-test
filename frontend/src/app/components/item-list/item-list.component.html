@@ -19,10 +19,13 @@
     
     <div *ngIf="items.length > 0" class="row">
       <div class="col-md-4 mb-4" *ngFor="let item of items">
-        <div class="card">
+        <div class="card clickable" (click)="openItemDetails(item)">
           <div class="card-body">
             <h5 class="card-title">{{ item.name }}</h5>
             <p class="card-text">ID: {{ item.id }}</p>
+            <div class="card-action">
+              <small class="text-muted">Click for details</small>
+            </div>
           </div>
         </div>
       </div>
@@ -30,4 +33,7 @@
   </div>
   
   <button class="btn btn-primary mt-3" (click)="loadItems()">Refresh Items</button>
+  
+  <!-- Item detail modal -->
+  <app-item-detail-modal></app-item-detail-modal>
 </div> 
