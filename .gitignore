@@ -1,0 +1,44 @@
+# Backend
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+*.class
+*.log
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+hs_err_pid*
+
+# Frontend
+/frontend/node_modules/
+/frontend/dist/
+/frontend/npm-debug.log
+/frontend/yarn-error.log
+/frontend/.angular/cache
+/frontend/.sass-cache/
+/frontend/connect.lock
+/frontend/coverage/
+/frontend/libpeerconnection.log
+/frontend/testem.log
+/frontend/typings/
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# IDE - IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# System Files
+.DS_Store
+Thumbs.db 

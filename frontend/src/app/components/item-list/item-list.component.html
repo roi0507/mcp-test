@@ -1,0 +1,33 @@
+<div class="container">
+  <h2 class="mb-4">Items</h2>
+  
+  <div *ngIf="loading" class="text-center">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p>Loading items...</p>
+  </div>
+  
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+  
+  <div *ngIf="!loading && !error">
+    <div *ngIf="items.length === 0" class="alert alert-info">
+      No items found.
+    </div>
+    
+    <div *ngIf="items.length > 0" class="row">
+      <div class="col-md-4 mb-4" *ngFor="let item of items">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ item.name }}</h5>
+            <p class="card-text">ID: {{ item.id }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <button class="btn btn-primary mt-3" (click)="loadItems()">Refresh Items</button>
+</div> 
