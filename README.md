@@ -50,6 +50,7 @@ npm install
 npm start
 ```
 
+
 The development server will start on port 4200 and proxy API requests to the backend.
 
 ## API Endpoints
