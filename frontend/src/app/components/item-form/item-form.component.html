@@ -1,0 +1,59 @@
+<div class="modal-backdrop" *ngIf="isVisible" (click)="close()"></div>
+
+<div class="modal-container" *ngIf="isVisible">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h5 class="modal-title">{{ item ? 'Edit Item' : 'Create New Item' }}</h5>
+      <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+    </div>
+    
+    <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+      <div class="modal-body">
+        <div *ngIf="error" class="alert alert-danger">
+          {{ error }}
+        </div>
+        
+        <!-- Hidden ID field -->
+        <input type="hidden" formControlName="id">
+        
+        <!-- Name field -->
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="name" formControlName="name">
+          <div *ngIf="itemForm.get('name')?.invalid && (itemForm.get('name')?.dirty || itemForm.get('name')?.touched)" class="text-danger">
+            <small *ngIf="itemForm.get('name')?.errors?.['required']">Name is required.</small>
+            <small *ngIf="itemForm.get('name')?.errors?.['maxlength']">Name must be less than 255 characters.</small>
+          </div>
+        </div>
+        
+        <!-- Warehouse field -->
+        <div class="mb-3">
+          <label for="warehouse" class="form-label">Warehouse</label>
+          <input type="text" class="form-control" id="warehouse" formControlName="warehouse">
+          <div *ngIf="itemForm.get('warehouse')?.invalid && (itemForm.get('warehouse')?.dirty || itemForm.get('warehouse')?.touched)" class="text-danger">
+            <small *ngIf="itemForm.get('warehouse')?.errors?.['required']">Warehouse is required.</small>
+            <small *ngIf="itemForm.get('warehouse')?.errors?.['maxlength']">Warehouse must be less than 255 characters.</small>
+          </div>
+        </div>
+        
+        <!-- Amount field -->
+        <div class="mb-3">
+          <label for="amount" class="form-label">Amount</label>
+          <input type="number" class="form-control" id="amount" formControlName="amount">
+          <div *ngIf="itemForm.get('amount')?.invalid && (itemForm.get('amount')?.dirty || itemForm.get('amount')?.touched)" class="text-danger">
+            <small *ngIf="itemForm.get('amount')?.errors?.['required']">Amount is required.</small>
+            <small *ngIf="itemForm.get('amount')?.errors?.['min']">Amount must be greater than or equal to 0.</small>
+          </div>
+        </div>
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="close()">Cancel</button>
+        <button type="submit" class="btn btn-primary" [disabled]="itemForm.invalid || isSubmitting">
+          <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+          {{ item ? 'Update' : 'Create' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div> 
