@@ -46,6 +46,26 @@ cd backend
 
 The server will start on port 8080.
 
+### Creating an Executable JAR
+
+You can create a self-contained executable JAR file:
+
+```bash
+cd backend
+./gradlew shadowJar
+```
+
+This creates a fat JAR (including all dependencies) at:
+```
+backend/build/libs/vertx-api-1.0-SNAPSHOT-fat.jar
+```
+
+To run the executable JAR:
+
+```bash
+java -jar backend/build/libs/vertx-api-1.0-SNAPSHOT-fat.jar
+```
+
 ## Frontend (Angular)
 
 The frontend is built with Angular and uses Bootstrap for UI components.
@@ -94,4 +114,82 @@ For local development, start both the backend and frontend in separate terminals
    npm start
    ```
 
-3. Access the application at http://localhost:4200 
+3. Access the application at http://localhost:4200
+
+## Production Deployment Package
+
+To create a complete production deployment package, follow these steps:
+
+### Automated Build (Recommended)
+
+Use the provided build scripts to automate the entire build process:
+
+#### On Linux/macOS:
+```bash
+# Make the script executable if needed
+chmod +x build.sh
+./build.sh
+```
+
+#### On Windows:
+```bash
+build.bat
+```
+
+This will:
+1. Build the Angular frontend
+2. Copy the frontend files to the backend resources
+3. Create a fat JAR with the complete application
+
+The executable JAR will be created at:
+```
+backend/build/libs/vertx-api-1.0-SNAPSHOT-fat.jar
+```
+
+### Manual Build Process
+
+If you prefer to build manually, here are the steps:
+
+#### 1. Build the Frontend
+
+```bash
+cd frontend
+npm install
+npm run build
+```
+
+This creates the production-ready frontend in the `frontend/dist/angular-vertx-app` directory.
+
+#### 2. Build the Backend with Frontend Included
+
+You can include the frontend static files in the backend JAR for a complete, self-contained application:
+
+```bash
+# First, copy the built frontend to the backend resources
+mkdir -p backend/src/main/resources/webroot
+cp -r frontend/dist/angular-vertx-app/* backend/src/main/resources/webroot/
+
+# Then build the fat JAR
+cd backend
+./gradlew shadowJar
+```
+
+This will create a complete application package at:
+```
+backend/build/libs/vertx-api-1.0-SNAPSHOT-fat.jar
+```
+
+### 3. Running the Complete Package
+
+```bash
+java -jar backend/build/libs/vertx-api-1.0-SNAPSHOT-fat.jar
+```
+
+The application will be available at `http://localhost:8080/` with the API endpoints at `http://localhost:8080/api/...`
+
+### 4. Database Configuration
+
+For production deployment, make sure to:
+1. Use a secure database password
+2. Configure proper database credentials in `DatabaseConfig.kt` or use environment variables
+3. Set up appropriate database backups and security measures 

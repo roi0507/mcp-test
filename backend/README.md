@@ -38,6 +38,22 @@ To run the application:
 
 The server will start on port 8080.
 
+## Building and Running the Executable JAR
+
+To build a self-contained executable JAR:
+
+```bash
+./gradlew shadowJar
+```
+
+This creates a fat JAR file in `build/libs/vertx-api-1.0-SNAPSHOT-fat.jar` that includes all dependencies.
+
+To run the executable JAR:
+
+```bash
+java -jar build/libs/vertx-api-1.0-SNAPSHOT-fat.jar
+```
+
 ## API Endpoints
 
 - `GET /api/health` - Health check endpoint

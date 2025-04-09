@@ -13,6 +13,7 @@ import io.vertx.ext.web.Router
 import io.vertx.ext.web.RoutingContext
 import io.vertx.ext.web.handler.BodyHandler
 import io.vertx.ext.web.handler.CorsHandler
+import io.vertx.ext.web.handler.StaticHandler
 import io.vertx.kotlin.coroutines.CoroutineVerticle
 import io.vertx.kotlin.coroutines.await
 import io.vertx.kotlin.coroutines.dispatcher
@@ -269,6 +270,18 @@ class MainVerticle : CoroutineVerticle() {
                         .putHeader("content-type", "application/json")
                         .end("""{"error":"Internal server error"}""")
                 }
+            }
+        }
+        
+        // Serve static frontend files if they exist in the resources/webroot directory
+        router.route("/*").handler(StaticHandler.create("webroot").setIndexPage("index.html"))
+        
+        // SPA fallback - redirect to index.html for any routes not matched
+        router.route("/*").handler { ctx ->
+            if (!ctx.request().path().startsWith("/api/")) {
+                ctx.reroute("/index.html")
+            } else {
+                ctx.next()
             }
         }
         

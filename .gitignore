@@ -42,3 +42,7 @@ out/
 # System Files
 .DS_Store
 Thumbs.db 
+backend/src/main/resources/webroot/main.7806a0caecb481ff.js
+backend/src/main/resources/webroot/polyfills.c41a9cd097419e33.js
+backend/src/main/resources/webroot/runtime.8643624d2943eedd.js
+backend/src/main/resources/webroot/styles.226dd0c82637cf25.css
