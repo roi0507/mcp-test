@@ -31,9 +31,9 @@ Before running the application, you need to:
 1. Install MySQL 8.0 or higher
 2. Create a database named `vertx_db`
 3. The default connection settings are:
-   - URL: `jdbc:mysql://localhost:3306/vertx_db`
+   - URL: `jdbc:mysql://localhost:3306/database3`
    - Username: `root`
-   - Password: `password`
+   - Password: `mypassword`
 
 You can adjust these settings in the `DatabaseConfig.kt` file.
 
